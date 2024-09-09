@@ -1,0 +1,287 @@
+{
+    "majors": [
+        {
+            "id": "religion",
+            "name": "신학대학 ✝️"
+        },
+        {
+            "id": "content",
+            "name": "문화콘텐츠대학 📕"
+        },
+        {
+            "id": "safety",
+            "name": "보건안전대학 ⛑"
+        },
+        {
+            "id": "society",
+            "name": "사회과학대학 👨‍👩‍👧‍👦"
+        },
+        {
+            "id": "education",
+            "name": "사범대학 🧑‍🏫"
+        },
+        {
+            "id": "technology",
+            "name": "공과대학 🧑‍💻"
+        },
+        {
+            "id": "music",
+            "name": "음악대학 🎵"
+        },
+        {
+            "id": "art",
+            "name": "미술/디자인대학 🎨"
+        },
+        {
+            "id": "game",
+            "name": "웹툰애니메이션게임대학 🕹"
+        }
+    ],
+    "departments": [
+        {
+            "id": "theology",
+            "majorId": "religion",
+            "name": "신학과"
+        },
+        {
+            "id": "english",
+            "majorId": "content",
+            "name": "영어학과"
+        },
+        {
+            "id": "history",
+            "majorId": "content",
+            "name": "역사학과"
+        },
+        {
+            "id": "social",
+            "majorId": "content",
+            "name": "사회복지학과"
+        },
+        {
+            "id": "vidio",
+            "majorId": "content",
+            "name": "연극영화영상학부"
+        },
+        {
+            "id": "business",
+            "majorId": "society",
+            "name": "경영학과"
+        },
+        {
+            "id": "hotel",
+            "majorId": "society",
+            "name": "항공호텔관광경영학과"
+        },
+        {
+            "id": "real-estate",
+            "majorId": "society",
+            "name": "부동산금융보험융합학과"
+        },
+        {
+            "id": "global",
+            "majorId": "society",
+            "name": "글로벌비즈니스학과"
+        },
+        {
+            "id": "economics",
+            "majorId": "society",
+            "name": "금융경제학과"
+        },
+        {
+            "id": "marketing",
+            "majorId": "society",
+            "name": "마케팅빅데이터학과"
+        },
+        {
+            "id": "chinese",
+            "majorId": "society",
+            "name": "중국어중국통상학과"
+        },
+        {
+            "id": "advertising",
+            "majorId": "society",
+            "name": "광고홍보커뮤니케이션학부"
+        },
+        {
+            "id": "administration",
+            "majorId": "society",
+            "name": "행정학부"
+        },
+        {
+            "id": "police",
+            "majorId": "society",
+            "name": "경찰법학과"
+        },
+        {
+            "id": "food",
+            "majorId": "safety",
+            "name": "식품제약학부"
+        },
+        {
+            "id": "cosmetics",
+            "majorId": "safety",
+            "name": "화장품학과"
+        },
+        {
+            "id": "fire",
+            "majorId": "safety",
+            "name": "소방안전학부"
+        },
+        {
+            "id": "sports",
+            "majorId": "safety",
+            "name": "스포츠건강관리학과"
+        },
+        {
+            "id": "architecture",
+            "majorId": "technology",
+            "name": "건축학부"
+        },
+        {
+            "id": "city",
+            "majorId": "technology",
+            "name": "도시공학과"
+        },
+        {
+            "id": "computer",
+            "majorId": "technology",
+            "name": "컴퓨터공학과"
+        },
+        {
+            "id": "electrical",
+            "majorId": "technology",
+            "name": "전기전자공학과"
+        },
+        {
+            "id": "game",
+            "majorId": "technology",
+            "name": "게임소프트웨어공학과"
+        },
+        {
+            "id": "ai",
+            "majorId": "technology",
+            "name": "AI응용학과"
+        },
+        {
+            "id": "robotics",
+            "majorId": "technology",
+            "name": "로봇학과"
+        },
+        {
+            "id": "information",
+            "majorId": "technology",
+            "name": "정보통신공학과"
+        },
+        {
+            "id": "environmental",
+            "majorId": "technology",
+            "name": "도시·환경·화학공학과"
+        },
+        {
+            "id": "korean",
+            "majorId": "education",
+            "name": "국어교육과"
+        },
+        {
+            "id": "english",
+            "majorId": "education",
+            "name": "영어교육과"
+        },
+        {
+            "id": "math",
+            "majorId": "education",
+            "name": "수학교육과"
+        },
+        {
+            "id": "music-education",
+            "majorId": "education",
+            "name": "음악교육과"
+        },
+        {
+            "id": "art-education",
+            "majorId": "education",
+            "name": "미술교육과"
+        },
+        {
+            "id": "child",
+            "majorId": "education",
+            "name": "유아교육과"
+        },
+        {
+            "id": "teaching",
+            "majorId": "education",
+            "name": "교직과"
+        },
+        {
+            "id": "performance",
+            "majorId": "music",
+            "name": "공연콘텐츠학부"
+        },
+        {
+            "id": "practical",
+            "majorId": "music",
+            "name": "실용음악학부"
+        },
+        {
+            "id": "orchestra",
+            "majorId": "music",
+            "name": "관현악·작곡학부"
+        },
+        {
+            "id": "piano",
+            "majorId": "music",
+            "name": "피아노학부"
+        },
+        {
+            "id": "korean-music",
+            "majorId": "music",
+            "name": "국악과"
+        },
+        {
+            "id": "arts",
+            "majorId": "art",
+            "name": "미술학부"
+        },
+        {
+            "id": "sculpture",
+            "majorId": "art",
+            "name": "입체조형학부"
+        },
+        {
+            "id": "visual-communication",
+            "majorId": "art",
+            "name": "시각커뮤니케이션디자인학과"
+        },
+        {
+            "id": "industrial",
+            "majorId": "art",
+            "name": "산업디자인학과"
+        },
+        {
+            "id": "fashion",
+            "majorId": "art",
+            "name": "섬유·패션디자인학과"
+        },
+        {
+            "id": "ceramic",
+            "majorId": "art",
+            "name": "도자디자인학과"
+        },
+        {
+            "id": "webtoon",
+            "majorId": "game",
+            "name": "웹툰학과"
+        },
+        {
+            "id": "animation",
+            "majorId": "game",
+            "name": "애니메이션학과"
+        },
+        {
+            "id": "game",
+            "majorId": "game",
+            "name": "게임콘텐츠학과"
+        }
+    ]
+}
