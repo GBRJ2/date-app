@@ -74,6 +74,9 @@ export default {
     };
   },
   computed: {
+    /*
+     * 선택된 단과 대학에 따라 필터링된 학과 목록 반환
+     */
     filteredDepartments() {
       return this.departments.filter(
         (department) => department.majorId === this.selectedMajor
@@ -81,20 +84,35 @@ export default {
     },
   },
   methods: {
+    /*
+     * 단과 대학 선택 메서드
+     */
     selectMajor(majorId) {
       this.selectedMajor = majorId;
       this.selectedDepartment = null; // Major 선택 시 department 초기화
       console.log(this.selectedMajor);
     },
+
+    /*
+     * 학과 선택 메서드
+     */
     selectDepartment(departmentId) {
       this.selectedDepartment = departmentId.id;
       this.koreanName = departmentId.name;
       console.log(this.selectedDepartment);
     },
+
+    /*
+     * 성별 선택 메서드
+     */
     selectGender(gender) {
       this.selectedGender = gender;
       console.log(this.selectedGender);
     },
+
+    /*
+     * 다음 페이지로 이동
+     */
     handleNext() {
       if (this.selectedMajor) {
         this.$router.push("/signup/success");
@@ -110,8 +128,9 @@ export default {
 .app {
   max-width: 400px;
   margin: 0 auto;
-  height: calc(100vh - 40px);
+  height: 100%;
   padding: 20px;
+  padding-bottom: 50px;
 }
 
 .title {
@@ -138,8 +157,13 @@ footer {
   display: flex;
   margin-top: 30px;
   flex-direction: row-reverse;
+  margin-bottom: 30px;
   justify-self: start;
   bottom: 0;
+}
+
+button {
+  color: rgb(121, 121, 121);
 }
 
 @keyframes fadeInUp {

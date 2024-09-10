@@ -12,6 +12,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import BaseBtn from './components/UI/BaseBtn.vue';
 import BaseCard from './components/UI/BaseCard.vue';
 import TheHeader from './components/TheHeader.vue';
+import BaseInput from './components/UI/BaseInput.vue';
 
 library.add(fas);
 
@@ -21,6 +22,7 @@ app.use(store);
 
 app.component('BaseBtn', BaseBtn);
 app.component('TheHeader', TheHeader);
+app.component('BaseInput', BaseInput);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.component('BaseCard', BaseCard);
 app.mount('#app');

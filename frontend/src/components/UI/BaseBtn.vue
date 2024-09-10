@@ -36,7 +36,7 @@
       buttonClass() {
         return {
           'btn': true,
-          [`btn-${this.variant}`]: true,
+          // [`btn-${this.variant}`]: true,
           'btn-disabled': this.disabled,
           'btn-selected': this.selected,
           'btn-selected-female': this.selectedFemale,

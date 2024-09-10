@@ -4,23 +4,49 @@
       <the-header @click="goBack"></the-header>
     </header>
     <main>
+      <!--
+        학교 명 입력받기
+      -->
       <form class="email" @submit.prevent="submitEmail">
         <h3>학교 인증이 필요해요</h3>
         <p>학교 명을 입력해주세요</p>
-        <input type="text" placeholder="목원대학교" />
+        <base-input
+          type="text"
+          placeholder="목원대학교"
+          v-model="schoolName"
+          :required="true"
+        />
+        <!--
+        학교 이메일 입력받기
+        -->
         <p>학교 이메일 주소를 입력해주세요</p>
         <div class="vertical">
-          <input type="email" placeholder="1958012@mokwon.ac.kr" />
-          <base-btn type="submit" variant="primary" @click="sendEmail" v-if="!response"
-            >인증하기</base-btn>
+          <base-input
+            type="email"
+            placeholder="1958012@mokwon.ac.kr"
+            :required="true"
+          />
+          <base-btn type="submit" variant="primary" v-if="!response"
+            >인증하기</base-btn
+          >
         </div>
+        <!--
+        인증 번호 인증하기
+        -->
         <div v-if="response">
           <p>인증번호</p>
-          <input type="text" />
-          <base-btn type="submit" variant="primary"
-          >인증하기</base-btn>
+          <div class="vertical">
+            <base-input type="text" />
+            <base-btn type="submit" variant="primary" @click="successResponse">인증하기</base-btn>
+          </div>
         </div>
       </form>
+      <div v-if="isEmailVerified">
+        <p>비밀번호를 입력해주세요</p>
+        <base-input type="password" v-model="password" :required="true" />
+        <p>다시 한 번 비밀번호를 입력해주세요</p>
+        <base-input type="password" v-model="passwordCheck" :required="true" />
+      </div>
       <h2 class="title">학번을 알려주세요</h2>
       <select v-model="studentNum" name="num">
         <option value="" disabled>학번 선택</option>
@@ -44,31 +70,49 @@
 
 <script>
 import axios from "axios";
+import BaseInput from "@/components/UI/BaseInput.vue";
 
 export default {
+  components: { BaseInput },
   data() {
     return {
       studentNum: null,
       email: null,
       response: false,
-      isEmailVerified: true,
+      isEmailVerified: false,
+      schoolName: null,
     };
   },
   methods: {
+    /*
+     * 다음 페이지로 이동 
+     */
     handleSuccess() {
-      if (this.isEmailVerified) {
-        this.$router.push("/signup/2");
-      } else {
-        alert("모두 작성되지 않았습니다");
-      }
+      // if (this.isEmailVerified) {
+      //   this.$router.push("/signup/2");
+      // } else {
+      //   alert("모두 작성되지 않았습니다");
+      // }
+      this.$router.push("/signup/2");
+
     },
-    sendEmail() {
-      this.response = true;
+
+    /*
+    * 이메일 인증번호 확인하는 메서드 일단 true로 설정
+    */ 
+    successResponse() {
+      this.isEmailVerified = true;
     },
+
+    /*
+    * 이메일 인증번호 전송하는 메서드 (주소 없음 현재)
+    */
     submitEmail() {
+      this.response = true;
       if (this.email) {
         axios
           .post("fuck 주소가 없어", {
+            schoolName: this.schoolName,
             email: this.email,
           })
           .then((response) => {
@@ -114,25 +158,18 @@ p {
   margin-top: 10px;
 }
 
-input {
-  font-size: 15px;
-  color: #222222;
-  width: 250px;
-  height: 21px;
-  border: none;
-  padding: 5px 0px 5px 10px;
-  margin: 10px 10px 10px 0px;
-  border-radius: 8px;
-  background-color: #eeeeee;
+button{
+  color: rgb(121, 121, 121);
+
 }
 
 .vertical {
   display: flex;
 }
 
-input::placeholder {
+/* input::placeholder {
   color: #aaaaaa;
-}
+} */
 
 footer {
   display: flex;
