@@ -107,13 +107,13 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', {
+    ...mapState('users', {
       studentNum: state => state.studentNum,
       isEmailVerified: state => state.isEmailVerified,
     }),
   },
   methods: {
-    ...mapActions('user', [
+    ...mapActions('users', [
       'setStudentNum',
       'setEmailVerified',
     ]),
@@ -152,6 +152,8 @@ export default {
       // } else {
       //   alert("모두 작성되지 않았습니다");
       // }
+      this.setStudentNum(this.studentNum);
+      this.setEmailVerified(this.isEmailVerified);
       this.$router.push("/signup/2");
     },
 

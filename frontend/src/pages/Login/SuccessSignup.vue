@@ -11,12 +11,29 @@
     ></dotlottie-player>
     <h3>회원가입을 완료했습니다!</h3>
     <base-btn point> 홈으로</base-btn>
+    <p>{{ emailVerified }}</p>
   </div>
   </main>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
+
 export default {
+  computed: {
+    ...mapState('users', { 
+      studentNum: state => state.studentNum,
+      emailVerified: state => state.emailVerified,
+      userGender: state => state.userGender,
+      userDepartment: state => state.userDepartment,
+    }),
+    ...mapGetters('users', [
+      'studentNum',
+      'emailVerified',
+      'userGender',
+      'userDepartment',
+    ]),
+  },
   mounted() {
     const script = document.createElement("script");
     script.src =

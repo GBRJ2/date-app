@@ -75,7 +75,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', {
+    ...mapState('users', {
       userGender: state => state.userGender,
       selectedDepartment: state => state.userDepartment,
     }),
@@ -89,7 +89,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('user', [
+    ...mapActions('users', [
       'setGender',
       'setDepartment',
     ]),
@@ -124,6 +124,8 @@ export default {
      */
     handleNext() {
       if (this.selectedMajor) {
+        this.setGender(this.userGender);
+        this.setDepartment(this.selectedDepartment);
         this.$router.push("/signup/success");
       } else {
         alert("단과 대학을 선택해주세요!");
