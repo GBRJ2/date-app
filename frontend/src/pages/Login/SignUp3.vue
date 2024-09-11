@@ -19,6 +19,9 @@
         @click="selectGender('female')"
         >여자에요 🙋‍♀️</base-btn
       >
+
+      <h2 class="title">당신의 주량은? 🍺</h2>
+
     </main>
 
     <footer>

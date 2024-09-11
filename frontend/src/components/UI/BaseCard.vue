@@ -1,4 +1,3 @@
-<!-- BaseCard.vue -->
 <template>
     <div class="card">
       <img v-if="image" :src="image" class="card-img-top" alt="Card image" />

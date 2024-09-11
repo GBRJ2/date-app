@@ -23,6 +23,7 @@ app.use(store);
 
 app.component('BaseBtn', BaseBtn);
 app.component('TheHeader', TheHeader);
+app.component('BaseInput', BaseInput);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.component('BaseCard', BaseCard);
 app.component('BaseInput', BaseInput);

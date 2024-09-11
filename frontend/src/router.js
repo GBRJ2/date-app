@@ -7,6 +7,7 @@ import SignUp1 from './pages/Login/SignUp1.vue';
 import SignUp2 from './pages/Login/SignUp2.vue';
 import SignUp3 from './pages/Login/SignUp3.vue';
 import SuccessSignup from './pages/Login/SuccessSignup.vue';
+import MakeTeam from './pages/Post/MakeTeam.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -47,6 +48,11 @@ const router = createRouter({
       path: '/signup/success',
       name: 'Success',
       component: SuccessSignup
+    },
+    {
+      path: '/maketeam',
+      name: 'MakeTeam',
+      component: MakeTeam
     }
   ]
 });
