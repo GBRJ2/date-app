@@ -86,8 +86,9 @@
 
   .btn-point {
     background-color: rgba(250, 244, 245, .3);
-    box-shadow: 0 0 0 1px rgb(154,53,69) inset;
-    color: #802020;
+    background-color: #ff6b6b;
+    color: white;
+
   }
   </style>
   

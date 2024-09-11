@@ -5,7 +5,7 @@
 export default {};
 </script>
 
-<style scoped>
+<style>
 @font-face {
   font-family: "pretendard";
   src: url(../src/assets/font/Pretendard-Medium.ttf);
@@ -17,6 +17,10 @@ export default {};
 }
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin : 0;
+  padding : 0;
+  box-sizing: border-box;
+
 }
 
 body {

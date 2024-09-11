@@ -118,7 +118,7 @@ export default {
   font-family: "pretendard";
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .second {
@@ -140,6 +140,11 @@ footer {
   flex-direction: row-reverse;
   justify-self: start;
   bottom: 0;
+}
+
+button {
+  color: rgb(121, 121, 121);
+  background: transparent;
 }
 
 @keyframes fadeInUp {

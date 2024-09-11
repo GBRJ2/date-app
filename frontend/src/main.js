@@ -12,6 +12,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import BaseBtn from './components/UI/BaseBtn.vue';
 import BaseCard from './components/UI/BaseCard.vue';
 import TheHeader from './components/TheHeader.vue';
+import BaseInput from './components/UI/BaseInput.vue';
+import BottomNav from './components/UI/BottomNav.vue';
 
 library.add(fas);
 
@@ -23,6 +25,9 @@ app.component('BaseBtn', BaseBtn);
 app.component('TheHeader', TheHeader);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.component('BaseCard', BaseCard);
+app.component('BaseInput', BaseInput);
+app.component('BottomNav', BottomNav);
+
 app.mount('#app');
 
 
