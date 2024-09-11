@@ -4,23 +4,67 @@
       <the-header @click="goBack"></the-header>
     </header>
     <main>
+      <!--
+        학교 명 입력받기
+      -->
       <form class="email" @submit.prevent="submitEmail">
         <h3>학교 인증이 필요해요</h3>
         <p>학교 명을 입력해주세요</p>
-        <input type="text" placeholder="목원대학교" />
+        <base-input
+          type="text"
+          placeholder="목원대학교"
+          v-model="schoolName"
+          :required="true"
+        />
+        <!--
+        학교 이메일 입력받기
+        -->
         <p>학교 이메일 주소를 입력해주세요</p>
         <div class="vertical">
-          <input type="email" placeholder="1958012@mokwon.ac.kr" />
-          <base-btn type="submit" variant="primary" @click="sendEmail" v-if="!response"
-            >인증하기</base-btn>
+          <base-input
+            type="email"
+            placeholder="1958012@mokwon.ac.kr"
+            v-model="email"
+            :required="true"
+          />
+          <base-btn type="submit" variant="primary" v-if="!response"
+            >인증하기</base-btn
+          >
         </div>
+        <!--
+        인증 번호 인증하기
+        -->
         <div v-if="response">
           <p>인증번호</p>
-          <input type="text" />
-          <base-btn type="submit" variant="primary"
-          >인증하기</base-btn>
+          <div class="vertical">
+            <base-input type="text" />
+            <base-btn type="submit" variant="primary" @click="successResponse"
+              >인증하기</base-btn
+            >
+          </div>
         </div>
       </form>
+      <div v-if="isEmailVerified">
+        <p>비밀번호를 입력해주세요</p>
+        <base-input
+          type="password"
+          v-model="password"
+          :required="true"
+          @input="validatePassword"
+        />
+
+        <p v-if="passwordError" style="color: red">{{ passwordError }}</p>
+
+        <p>다시 한 번 비밀번호를 입력해주세요</p>
+        <base-input
+          type="password"
+          v-model="passwordCheck"
+          :required="true"
+          @input="validatePasswordMatch"
+        />
+        <p v-if="passwordCheckError" style="color:red">{{ passwordCheckError }}</p>
+
+      </div>
       <h2 class="title">학번을 알려주세요</h2>
       <select v-model="studentNum" name="num">
         <option value="" disabled>학번 선택</option>
@@ -44,31 +88,79 @@
 
 <script>
 import axios from "axios";
+import BaseInput from "@/components/UI/BaseInput.vue";
 
 export default {
+  components: { BaseInput },
   data() {
     return {
       studentNum: null,
       email: null,
       response: false,
-      isEmailVerified: true,
+      isEmailVerified: false,
+      schoolName: null,
+
+      password: "",
+      passwordCheck: "",
+      passwordError: "",
+      passwordCheckError: "",
     };
   },
   methods: {
-    handleSuccess() {
-      if (this.isEmailVerified) {
-        this.$router.push("/signup/2");
+    /*
+     * 비밀번호 유효성 검사
+     */
+    validatePassword() {
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (!this.password.match(passwordRegex)) {
+        this.passwordError =
+          "비밀번호는 최소 8자 이상, 숫자, 특수 문자가 포함되어야 합니다.";
       } else {
-        alert("모두 작성되지 않았습니다");
+        this.passwordError = "";
       }
     },
-    sendEmail() {
-      this.response = true;
+
+    /*
+     * 비밀번호가 맞는지 확인
+     */
+
+    validatePasswordMatch() {
+      if (this.password !== this.passwordCheck) {
+        this.passwordCheckError = "비밀번호가 일치하지 않습니다.";
+      } else {
+        this.passwordCheckError = "";
+      }
     },
+
+    /*
+     * 다음 페이지로 이동
+     */
+    handleSuccess() {
+      // if (this.isEmailVerified) {
+      //   this.$router.push("/signup/2");
+      // } else {
+      //   alert("모두 작성되지 않았습니다");
+      // }
+      this.$router.push("/signup/2");
+    },
+
+    /*
+     * 이메일 인증번호 확인하는 메서드 일단 true로 설정
+     */
+    successResponse() {
+      this.isEmailVerified = true;
+    },
+
+    /*
+     * 이메일 인증번호 전송하는 메서드 (현재 주소 임시 파베에 저장)
+     */
     submitEmail() {
+      this.response = true;
       if (this.email) {
         axios
-          .post("fuck 주소가 없어", {
+          .post("https://fir-project-6b9e1-default-rtdb.firebaseio.com/user.json", {
+            schoolName: this.schoolName,
             email: this.email,
           })
           .then((response) => {
@@ -80,6 +172,8 @@ export default {
           });
       }
     },
+
+    // TODO: 서버에서 인증번호 받아와서 유저가 입력한거랑 매칭 하는 메서드 만들어야댐
   },
 };
 </script>
@@ -114,25 +208,17 @@ p {
   margin-top: 10px;
 }
 
-input {
-  font-size: 15px;
-  color: #222222;
-  width: 250px;
-  height: 21px;
-  border: none;
-  padding: 5px 0px 5px 10px;
-  margin: 10px 10px 10px 0px;
-  border-radius: 8px;
-  background-color: #eeeeee;
+button {
+  color: rgb(121, 121, 121);
 }
 
 .vertical {
   display: flex;
 }
 
-input::placeholder {
+/* input::placeholder {
   color: #aaaaaa;
-}
+} */
 
 footer {
   display: flex;
