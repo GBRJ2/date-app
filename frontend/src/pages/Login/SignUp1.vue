@@ -27,14 +27,14 @@
             v-model="email"
             :required="true"
           />
-          <base-btn type="submit" variant="primary" v-if="!response"
+          <base-btn type="submit" variant="primary" v-if="!auth"
             >인증하기</base-btn
           >
         </div>
         <!--
         인증 번호 인증하기
         -->
-        <div v-if="response">
+        <div v-if="auth">
           <p>인증번호</p>
           <div class="vertical">
             <base-input type="text" />
@@ -62,8 +62,9 @@
           :required="true"
           @input="validatePasswordMatch"
         />
-        <p v-if="passwordCheckError" style="color:red">{{ passwordCheckError }}</p>
-
+        <p v-if="passwordCheckError" style="color: red">
+          {{ passwordCheckError }}
+        </p>
       </div>
       <h2 class="title">학번을 알려주세요</h2>
       <select v-model="studentNum" name="num">
@@ -88,15 +89,14 @@
 
 <script>
 import axios from "axios";
-import BaseInput from "@/components/UI/BaseInput.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  components: { BaseInput },
   data() {
     return {
       studentNum: null,
       email: null,
-      response: false,
+      auth: false,
       isEmailVerified: false,
       schoolName: null,
 
@@ -106,7 +106,17 @@ export default {
       passwordCheckError: "",
     };
   },
+  computed: {
+    ...mapState('user', {
+      studentNum: state => state.studentNum,
+      isEmailVerified: state => state.isEmailVerified,
+    }),
+  },
   methods: {
+    ...mapActions('user', [
+      'setStudentNum',
+      'setEmailVerified',
+    ]),
     /*
      * 비밀번호 유효성 검사
      */
@@ -147,6 +157,7 @@ export default {
 
     /*
      * 이메일 인증번호 확인하는 메서드 일단 true로 설정
+     * TODO: 서버에서 인증번호 받아와서 유저가 입력한거랑 매칭 하는 메서드 만들어야댐
      */
     successResponse() {
       this.isEmailVerified = true;
@@ -156,7 +167,6 @@ export default {
      * 이메일 인증번호 전송하는 메서드 (현재 주소 임시 파베에 저장)
      */
     submitEmail() {
-      this.response = true;
       if (this.email) {
         axios
           .post("https://fir-project-6b9e1-default-rtdb.firebaseio.com/user.json", {
@@ -164,7 +174,8 @@ export default {
             email: this.email,
           })
           .then((response) => {
-            console.log(response);
+            this.auth = true;
+            console.log("이메일 전송 성공:", response);
           })
           .catch((error) => {
             console.error("이메일 저장 중 오류:", error);
@@ -172,8 +183,6 @@ export default {
           });
       }
     },
-
-    // TODO: 서버에서 인증번호 받아와서 유저가 입력한거랑 매칭 하는 메서드 만들어야댐
   },
 };
 </script>

@@ -1,4 +1,7 @@
 export default {
-    formData: state => state.formData
+  studentNum: state => state.studentNum,
+  emailVerified: state => state.emailVerified,
+  userGender: state => state.userGender,
+  userDepartment: state => state.userDepartment,
   };
   

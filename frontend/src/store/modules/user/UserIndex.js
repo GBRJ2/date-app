@@ -6,17 +6,15 @@ import actions from './UserActions';
 
 export default {
   state: {
-    formData: {
-      name: '',
-      email: '',
-      password: ''
-    }
+      studentNum: null,
+      emailVerified: false,
+      userGender: null,
+      userDepartment: null,
   },
   namespaced: true,
   mutations,
   getters,
   actions,
   plugins: [createPersistedState()],
-};
-
-
+  
+}

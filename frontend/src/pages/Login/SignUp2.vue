@@ -7,18 +7,18 @@
       <h2 class="title">성별을 알려주세요</h2>
       <base-btn
         variant="primary"
-        :selected="selectedGender === 'male'"
+        :selected="userGender === 'male'"
         @click="selectGender('male')"
         >남자에요 🙋‍♂️</base-btn
       >
       <base-btn
         variant="primary"
-        :selectedFemale="selectedGender === 'female'"
+        :selectedFemale="userGender === 'female'"
         @click="selectGender('female')"
         >여자에요 🙋‍♀️</base-btn
       >
 
-      <div v-if="selectedGender" class="second">
+      <div v-if="userGender" class="second">
         <h2 class="title">학과를 알려주세요</h2>
 
         <!-- 단과 대학 버튼 -->
@@ -60,12 +60,13 @@
 
 <script>
 import Data from "../../assets/data/Mokwon.json";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "App",
   data() {
     return {
-      selectedGender: null,
+      userGender: null,
       selectedMajor: null,
       selectedDepartment: null,
       koreanName: null,
@@ -74,6 +75,10 @@ export default {
     };
   },
   computed: {
+    ...mapState('user', {
+      userGender: state => state.userGender,
+      selectedDepartment: state => state.userDepartment,
+    }),
     /*
      * 선택된 단과 대학에 따라 필터링된 학과 목록 반환
      */
@@ -84,6 +89,10 @@ export default {
     },
   },
   methods: {
+    ...mapActions('user', [
+      'setGender',
+      'setDepartment',
+    ]),
     /*
      * 단과 대학 선택 메서드
      */
@@ -106,8 +115,8 @@ export default {
      * 성별 선택 메서드
      */
     selectGender(gender) {
-      this.selectedGender = gender;
-      console.log(this.selectedGender);
+      this.userGender = gender;
+      console.log(this.userGender);
     },
 
     /*
