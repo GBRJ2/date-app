@@ -1,12 +1,7 @@
 <template>
+  <div class="app">
     <div class="members">
-      <base-card class="member-card">
-        <div class="member">
-          <div class="member-info">
-            <p class="member-name">명재휘 {{ userName }}</p>
-            <p class="member-department">로봇학과{{ userDepartment }}</p>
-          </div>
-        </div>
+      <base-card class="member-card" title="명재휘" content="로봇학과">
       </base-card>
       <base-card class="member-card" v-for="card in cards" :key="card">
       </base-card>
@@ -15,13 +10,7 @@
     <base-btn class="add-member-btn" @click="addMember">
       + 추가하기
     </base-btn>
-
-    <base-card class="location-card">
-      <div class="location">
-        <span>만나고 싶은 지역</span>
-        <span class="location-value">{{ meetingLocation }}</span>
-      </div>
-    </base-card>
+  </div>
 </template>
 
 <script>
@@ -43,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+.app{
+  background-color: #eaeaea;
+}
+
 .title {
   font-size: 24px;
   font-weight: bold;
@@ -68,7 +61,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 15px 0;
 }
 
 .member-card {

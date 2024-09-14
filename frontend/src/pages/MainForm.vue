@@ -1,22 +1,17 @@
 <template>
   <div class="app">
       <header>
-        <img src="../assets/logo.png" alt="logo" />
-        <h2 class="title">목원대 과팅 어플</h2>
-        <base-btn class="notification-btn">🔔</base-btn>
+        <div class="vertical">
+          <img src="../assets/logo.png" alt="logo" />
+          <h2 class="title">title</h2>
+        </div>
+        <h3><font-awesome-icon icon="bell" /></h3>
       </header>
-
-      <font-awesome-icon icon="comments" size="lg" style="color: #B197FC;" />
-      <base-card>
-        <p>현재 배정 중인 방 수 : 99 <span>자세히 보기 ></span></p>
+      <base-card :content="'현재 매칭 중인 방: ' + this.roomNum">
       </base-card>
-
-      <base-card>
-        <p>현재 이용 중인 유저 수 : 99 <span>자세히 보기 ></span></p>
-      </base-card>
-      
+      ㅜ
       <div class="main-action">
-        <h2>방 만들기</h2>
+        <h2>빠른 시작</h2>
         <button class="click-btn" @click="createRoom">Click</button>
         <p>주의 사항</p>
       </div>
@@ -76,6 +71,15 @@ img{
 
 header {
   display: flex;
+  justify-content: space-between;
+}
+
+.vertical {
+  display: flex;
+}
+h3{
+  right: 10px;
+  text-align: right;
 }
 
 .stats p {

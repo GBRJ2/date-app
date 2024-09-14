@@ -10,8 +10,7 @@
       autoplay
     ></dotlottie-player>
     <h3>회원가입을 완료했습니다!</h3>
-    <base-btn point> 홈으로</base-btn>
-    <p>{{ emailVerified }}</p>
+    <base-btn point @click="handleSuccess"> 홈으로</base-btn>
   </div>
   </main>
 </template>
@@ -40,6 +39,11 @@ export default {
       "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
     script.type = "module";
     document.head.appendChild(script);
+  },
+  methods: {
+    handleSuccess() {
+      this.$router.push('/mainform');
+    },
   },
 };
 </script>

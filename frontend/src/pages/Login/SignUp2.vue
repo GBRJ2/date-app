@@ -131,6 +131,7 @@ export default {
         alert("단과 대학을 선택해주세요!");
       }
     },
+    // vueX 에 있는 정보 가져와서 서버로 보내는 메서드 짜야 함 (handleNext에서 쓸거임)
   },
 };
 </script>

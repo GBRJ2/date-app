@@ -123,10 +123,16 @@ export default {
     validatePassword() {
       const passwordRegex =
         /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      const quterPassword =  /["']/;
+
       if (!this.password.match(passwordRegex)) {
         this.passwordError =
           "비밀번호는 최소 8자 이상, 숫자, 특수 문자가 포함되어야 합니다.";
-      } else {
+      } 
+      else if(this.password.match(quterPassword)) {
+        this.passwordError = `특정 특수문자(" '는 사용할 수 없습니다.`;
+      }
+      else {
         this.passwordError = "";
       }
     },
