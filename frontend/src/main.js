@@ -14,6 +14,7 @@ import BaseCard from './components/UI/BaseCard.vue';
 import TheHeader from './components/TheHeader.vue';
 import BaseInput from './components/UI/BaseInput.vue';
 import BottomNav from './components/UI/BottomNav.vue';
+import './registerServiceWorker'
 
 library.add(fas);
 
