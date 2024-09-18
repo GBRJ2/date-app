@@ -1,13 +1,15 @@
 // import Vue from 'vue';
 // import Router from 'vue-router';
-import InputTest from './pages/InputTest.vue'
-import BtnTest from './pages/BtnTest.vue';
+import InputTest from './pages/Test/InputTest.vue'
+import BtnTest from './pages/Test/BtnTest.vue';
 import MainForm from './pages/MainForm.vue';
 import SignUp1 from './pages/Login/SignUp1.vue';
 import SignUp2 from './pages/Login/SignUp2.vue';
 import SignUp3 from './pages/Login/SignUp3.vue';
 import SuccessSignup from './pages/Login/SuccessSignup.vue';
 import MakeTeam from './pages/Post/MakeTeam.vue';
+
+import OfflinePage from './pages/Error/OfflinePage.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -53,6 +55,11 @@ const router = createRouter({
       path: '/maketeam',
       name: 'MakeTeam',
       component: MakeTeam
+    },
+    {
+      path: '/offline',
+      name: 'Offline',
+      component: OfflinePage
     }
   ]
 });

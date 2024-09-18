@@ -9,7 +9,6 @@
       </header>
       <base-card :content="'현재 매칭 중인 방: ' + this.roomNum">
       </base-card>
-      ㅜ
       <div class="main-action">
         <h2>빠른 시작</h2>
         <button class="click-btn" @click="createRoom">Click</button>

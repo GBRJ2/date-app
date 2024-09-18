@@ -16,6 +16,9 @@ import BaseInput from './components/UI/BaseInput.vue';
 import BottomNav from './components/UI/BottomNav.vue';
 import './registerServiceWorker'
 
+//services
+import { requestFCMPermission }from './service/notificationPermission';
+
 library.add(fas);
 
 const app = createApp(App);
@@ -32,5 +35,4 @@ app.component('BottomNav', BottomNav);
 
 app.mount('#app');
 
-
-
+requestFCMPermission();
