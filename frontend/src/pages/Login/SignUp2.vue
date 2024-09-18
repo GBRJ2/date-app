@@ -7,18 +7,18 @@
       <h2 class="title">성별을 알려주세요</h2>
       <base-btn
         variant="primary"
-        :selected="selectedGender === 'male'"
+        :selected="userGender === 'male'"
         @click="selectGender('male')"
         >남자에요 🙋‍♂️</base-btn
       >
       <base-btn
         variant="primary"
-        :selectedFemale="selectedGender === 'female'"
+        :selectedFemale="userGender === 'female'"
         @click="selectGender('female')"
         >여자에요 🙋‍♀️</base-btn
       >
 
-      <div v-if="selectedGender" class="second">
+      <div v-if="userGender" class="second">
         <h2 class="title">학과를 알려주세요</h2>
 
         <!-- 단과 대학 버튼 -->
@@ -60,12 +60,13 @@
 
 <script>
 import Data from "../../assets/data/Mokwon.json";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "App",
   data() {
     return {
-      selectedGender: null,
+      userGender: null,
       selectedMajor: null,
       selectedDepartment: null,
       koreanName: null,
@@ -74,6 +75,13 @@ export default {
     };
   },
   computed: {
+    ...mapState('users', {
+      userGender: state => state.userGender,
+      selectedDepartment: state => state.userDepartment,
+    }),
+    /*
+     * 선택된 단과 대학에 따라 필터링된 학과 목록 반환
+     */
     filteredDepartments() {
       return this.departments.filter(
         (department) => department.majorId === this.selectedMajor
@@ -81,27 +89,49 @@ export default {
     },
   },
   methods: {
+    ...mapActions('users', [
+      'setGender',
+      'setDepartment',
+    ]),
+    /*
+     * 단과 대학 선택 메서드
+     */
     selectMajor(majorId) {
       this.selectedMajor = majorId;
       this.selectedDepartment = null; // Major 선택 시 department 초기화
       console.log(this.selectedMajor);
     },
+
+    /*
+     * 학과 선택 메서드
+     */
     selectDepartment(departmentId) {
       this.selectedDepartment = departmentId.id;
       this.koreanName = departmentId.name;
       console.log(this.selectedDepartment);
     },
+
+    /*
+     * 성별 선택 메서드
+     */
     selectGender(gender) {
-      this.selectedGender = gender;
-      console.log(this.selectedGender);
+      this.userGender = gender;
+      console.log(this.userGender);
     },
+
+    /*
+     * 다음 페이지로 이동
+     */
     handleNext() {
       if (this.selectedMajor) {
+        this.setGender(this.userGender);
+        this.setDepartment(this.selectedDepartment);
         this.$router.push("/signup/success");
       } else {
         alert("단과 대학을 선택해주세요!");
       }
     },
+    // vueX 에 있는 정보 가져와서 서버로 보내는 메서드 짜야 함 (handleNext에서 쓸거임)
   },
 };
 </script>
@@ -110,8 +140,9 @@ export default {
 .app {
   max-width: 400px;
   margin: 0 auto;
-  height: calc(100vh - 40px);
+  height: 100%;
   padding: 20px;
+  padding-bottom: 50px;
 }
 
 .title {
@@ -138,6 +169,7 @@ footer {
   display: flex;
   margin-top: 30px;
   flex-direction: row-reverse;
+  margin-bottom: 30px;
   justify-self: start;
   bottom: 0;
 }

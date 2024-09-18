@@ -1,33 +1,16 @@
 <template>
+  <div class="app">
     <div class="members">
-      <base-card class="member-card">
-        <div class="member">
-          <div class="member-info">
-            <p class="member-name">닉네임 {{ userName }}</p>
-            <p class="member-department">로봇학과{{ userDepartment }}</p>
-          </div>
-        </div>
+      <base-card class="member-card" title="명재휘" content="로봇학과">
       </base-card>
       <base-card class="member-card" v-for="card in cards" :key="card">
-        <div class="member">
-          <div class="member-info">
-            <p class="member-name"> 친구</p> <input type="text" class="team-name-input" />
-            <p class="member-department">로봇학과{{ userDepartment }}</p>
-          </div>
-        </div>
       </base-card>
     </div>
-    <div class="vertical">
-      <base-btn class="plus" @click="addMember">
-        + 친구 추가하기
-      </base-btn>
-    </div>
-    <base-card class="location-card">
-      <div class="location">
-        <span>만나고 싶은 지역</span>
-        <span class="location-value">{{ meetingLocation }}</span>
-      </div>
-    </base-card>
+
+    <base-btn class="add-member-btn" @click="addMember">
+      + 추가하기
+    </base-btn>
+  </div>
 </template>
 
 <script>
@@ -49,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+.app{
+  background-color: #eaeaea;
+}
+
 .title {
   font-size: 24px;
   font-weight: bold;
@@ -74,7 +61,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 15px 0;
 }
 
 .member-card {
@@ -105,6 +91,16 @@ export default {
 .member-year {
   font-size: 14px;
   color: #666;
+}
+.add-member-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  margin: 10px 0;
 }
 
 .location-card,

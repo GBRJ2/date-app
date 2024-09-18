@@ -1,4 +1,3 @@
-<!-- BaseCard.vue -->
 <template>
     <div class="card">
       <img v-if="image" :src="image" class="card-img-top" alt="Card image" />
@@ -30,12 +29,12 @@
   </script>
   
   <style scoped>
+
   .card {
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background-color: #FFF;
+    border-radius: 15px;
     overflow: hidden;
-    max-width: 300px;
-    margin: 10px;
+    margin: 15px;
   }
   
   .card-img-top {
@@ -44,7 +43,7 @@
   }
   
   .card-body {
-    padding: 15px;
+    padding: 0px 8px 8px 15px;
   }
   
   .card-title {
