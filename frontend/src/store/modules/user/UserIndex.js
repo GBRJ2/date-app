@@ -10,6 +10,7 @@ export default {
     emailVerified: false,
     userGender: null,
     userDepartment: null,
+    userPassword: null,
   },
   namespaced: true,
   mutations,

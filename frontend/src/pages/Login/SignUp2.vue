@@ -52,7 +52,7 @@
 
     <footer>
       <base-btn variant="primary" @click="handleNext" v-if="selectedDepartment">
-        다음으로
+        완료!
       </base-btn>
     </footer>
   </div>
@@ -60,7 +60,7 @@
 
 <script>
 import Data from "../../assets/data/Mokwon.json";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -75,10 +75,11 @@ export default {
     };
   },
   computed: {
-    ...mapState('users', {
-      userGender: state => state.userGender,
-      selectedDepartment: state => state.userDepartment,
+    ...mapState("users", {
+      userGender: (state) => state.userGender,
+      selectedDepartment: (state) => state.userDepartment,
     }),
+    ...mapGetters("users", ["studentNum", "emailVerified", "userPassword"]),
     /*
      * 선택된 단과 대학에 따라 필터링된 학과 목록 반환
      */
@@ -89,10 +90,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('users', [
-      'setGender',
-      'setDepartment',
-    ]),
+    ...mapActions("users", ["setGender", "setDepartment", "submitForm"]),
     /*
      * 단과 대학 선택 메서드
      */
@@ -126,7 +124,17 @@ export default {
       if (this.selectedMajor) {
         this.setGender(this.userGender);
         this.setDepartment(this.selectedDepartment);
-        this.$router.push("/signup/success");
+        this.submitForm()
+        .then(response => {
+          this.successMessage = 'Form submitted successfully!';
+          console.log('Response:', response);
+          this.$router.push("/signup/success");
+        })
+        .catch(error => {
+          this.errorMessage = 'Failed to submit form. Please try again.';
+          console.error('Error:', error);
+        });
+        
       } else {
         alert("단과 대학을 선택해주세요!");
       }
@@ -155,7 +163,6 @@ export default {
 .second {
   margin-top: 50px;
   animation: fadeInUp 0.5s;
-
 }
 
 h3 {

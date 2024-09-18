@@ -110,12 +110,14 @@ export default {
     ...mapState('users', {
       studentNum: state => state.studentNum,
       isEmailVerified: state => state.isEmailVerified,
+      userPassword: state => state.userPassword,
     }),
   },
   methods: {
     ...mapActions('users', [
       'setStudentNum',
       'setEmailVerified',
+      'setPassword',
     ]),
     /*
      * 비밀번호 유효성 검사
@@ -160,6 +162,7 @@ export default {
       // }
       this.setStudentNum(this.studentNum);
       this.setEmailVerified(this.isEmailVerified);
+      this.setPassword(this.userPassword)
       this.$router.push("/signup/2");
     },
 

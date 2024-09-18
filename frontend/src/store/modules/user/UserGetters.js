@@ -3,5 +3,6 @@ export default {
   emailVerified: state => state.emailVerified,
   userGender: state => state.userGender,
   userDepartment: state => state.userDepartment,
+  userPassword: state => state.userPassword,
   };
   

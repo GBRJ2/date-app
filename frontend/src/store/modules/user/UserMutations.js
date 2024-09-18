@@ -11,5 +11,8 @@ export default {
     SET_DEPARTMENT(state, userDepartment) {
       state.userDepartment = userDepartment;
     },
+    SET_PASSWORD(state, userPassword) {
+      state.userPassword = userPassword;
+    }
   };
   
