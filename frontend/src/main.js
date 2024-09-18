@@ -11,7 +11,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 // 컴포넌트 등록
 import BaseBtn from './components/UI/BaseBtn.vue';
 import BaseCard from './components/UI/BaseCard.vue';
-import TheHeader from './components/TheHeader.vue';
+import TheHeader from './components/UI/TheHeader.vue';
 import BaseInput from './components/UI/BaseInput.vue';
 import BottomNav from './components/UI/BottomNav.vue';
 import './registerServiceWorker'
