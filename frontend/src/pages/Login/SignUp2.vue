@@ -126,12 +126,10 @@ export default {
         this.setDepartment(this.selectedDepartment);
         this.submitForm()
         .then(response => {
-          this.successMessage = 'Form submitted successfully!';
           console.log('Response:', response);
           this.$router.push("/signup/success");
         })
         .catch(error => {
-          this.errorMessage = 'Failed to submit form. Please try again.';
           console.error('Error:', error);
         });
         
