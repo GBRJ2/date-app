@@ -14,10 +14,10 @@ import BaseCard from './components/UI/BaseCard.vue';
 import TheHeader from './components/UI/TheHeader.vue';
 import BaseInput from './components/UI/BaseInput.vue';
 import BottomNav from './components/UI/BottomNav.vue';
-import './registerServiceWorker'
 
 //services
 import { requestFCMPermission }from './service/notificationPermission';
+import './registerServiceWorker';
 
 library.add(fas);
 
@@ -32,6 +32,20 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 app.component('BaseCard', BaseCard);
 app.component('BaseInput', BaseInput);
 app.component('BottomNav', BottomNav);
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js") 
+      .then((registration) => {
+        console.log(
+          "Service Worker registered with scope:",
+          registration.scope
+        );
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  }
 
 app.mount('#app');
 

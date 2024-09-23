@@ -3,9 +3,8 @@ export default {
   submitForm({ state }) {
     return new Promise((resolve, reject) => {
       axios
-        .post("/api/submit", {
+        .post("https://date-app-4d575-default-rtdb.firebaseio.com/user.json", {
           studentNum: state.studentNum,
-          emailVerified: state.emailVerified,
           userGender: state.userGender,
           userDepartment: state.userDepartment,
           userPassword: state.userPassword,

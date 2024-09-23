@@ -37,7 +37,7 @@
         <div v-if="auth">
           <p>인증번호</p>
           <div class="vertical">
-            <base-input type="text" />
+            <base-input type="text" v-model="authentication"/>
             <base-btn type="submit" variant="primary" @click="successResponse"
               >인증하기</base-btn
             >
@@ -104,6 +104,7 @@ export default {
       passwordCheck: "",
       passwordError: "",
       passwordCheckError: "",
+      authentication: "",
     };
   },
   computed: {
@@ -169,18 +170,30 @@ export default {
     /*
      * 이메일 인증번호 확인하는 메서드 일단 true로 설정
      * TODO: 서버에서 인증번호 받아와서 유저가 입력한거랑 매칭 하는 메서드 만들어야댐
+     * 인증번호 보내는 메서드 
      */
     successResponse() {
-      this.isEmailVerified = true;
+      axios
+          .post("https://date-app-4d575-default-rtdb.firebaseio.com/authentication.json", {
+            authentication: this.authentication,
+          })
+          .then((response) => {
+            this.isEmailVerified = true;
+            console.log("인증번호 일치", response);
+          })
+          .catch((error) => {
+            console.error("인증번호 불일치", error);
+          });
     },
 
     /*
      * 이메일 인증번호 전송하는 메서드 (현재 주소 임시 파베에 저장)
+     * 학교 명과 이메일 보내는 메서드 
      */
     submitEmail() {
       if (this.email) {
         axios
-          .post("https://fir-project-6b9e1-default-rtdb.firebaseio.com/user.json", {
+          .post("https://date-app-4d575-default-rtdb.firebaseio.com/school.json", {
             schoolName: this.schoolName,
             email: this.email,
           })
